@@ -1,12 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {render} from 'react-dom';
+import {Header} from './app/Components/header';
+import {ToDo} from './app/Components/todo';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends React.Component {
+constructor (){
+  super();
+  this.state = {
+    initialItem: []
+  }
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+
+
+  render(){
+    return(
+      <div className = 'container'>
+        <div className = 'row'>
+          <div className = 'col-xs-10 cols-xs-offset-1'>
+            <Header/>
+          </div>
+        </div>
+
+        <div className = 'row'>
+          <div className = 'col-xs-10 cols-xs-offset-1'>
+            <ToDo
+            initialItem = {this.state.initialItem}>
+
+            </ToDo>
+          </div>
+        </div>
+
+      </div>
+
+    )
+  }
+
+
+
+}
+render(<App/>, document.getElementById('root'))
