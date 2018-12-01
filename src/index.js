@@ -2,33 +2,24 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Header} from './app/Components/header';
 import {ToDo} from './app/Components/todo';
+import {Footer} from './app/Components/footer'
 
 class App extends React.Component {
-constructor (){
-  super();
-  this.state = {
-    initialItem: []
-  }
-}
-
-
 
   render(){
     return(
-      <div className = 'container'>
-        <div className = 'row'>
-          <div className = 'col-xs-10 cols-xs-offset-1'>
+      <div className = 'App'>
+        <div>
+          <div>
             <Header/>
           </div>
         </div>
 
-        <div className = 'row'>
-          <div className = 'col-xs-10 cols-xs-offset-1'>
-            <ToDo
-            initialItem = {this.state.initialItem}>
-
-            </ToDo>
-          </div>
+        <div >
+            <ToDo/>
+        </div>
+        <div className = 'footer'>
+          <Footer />
         </div>
 
       </div>

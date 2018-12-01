@@ -4,7 +4,7 @@ export class ToDo extends React.Component {
   constructor (props){
     super(props);
     this.state = {
-      items: props.initialItem,
+      items: [],
       userInput: ''
     }
   }
@@ -12,43 +12,59 @@ export class ToDo extends React.Component {
   onAdd(){
     this.setState({
       items: [this.state.items, this.state.userInput].flat(),
-
+      userInput: ''
     })
   }
 
   onHandleChange(e){
     this.setState({
-      userInput: [e.target.value]
+      userInput: e.target.value
     })
   }
 
-  onClick(){
-    console.log(this.state.items)
+  // the item to be deleted is passed from the bind call on todo.js when its clicked
+  handleDelete(itemToBeDeleted){
+    let newItems = this.state.items.filter( (item) => {
+      return item !== itemToBeDeleted
+    });
+    this.setState({
+      items:newItems
+    })
   }
 
-  deleteItem(event){
-    console.log(this.parentNode)
+  handleKeyPress(e){
+    if(e.key === 'Enter') {
+      this.onAdd()
+    }
   }
 
   render(){
     return(
-      <div>
+      <div className = "todo">
         <input
+        className = "todo-input"
         value = {this.state.userInput}
         type = 'text' placeholder = "What needs to be done"
-        onChange = {this.onHandleChange.bind(this)}/>
+        onChange = {this.onHandleChange.bind(this)}
+        onKeyPress = {this.handleKeyPress.bind(this)}
+        />
         <button
-        className = 'btn btn-primary'
+        className = 'add-btn'
         onClick = {this.onAdd.bind(this)}> Add </button>
-        <hr/>
-        <div>
-          <div> <ul>
-            {this.state.items.map((item, i) => {
-              return <li key ={i}> {item} </li> })}
+        <div className = 'wrapper'>
+          <div className = 'todo-list'>
+            <ul>
+            {this.state.items.map( (item, i) =>
+               <li key ={i} className = 'listItems'>
+               {item}
+               < button onClick ={this.handleDelete.bind(this, item)}> x</button>
+               </li> )}
             </ul>
           </div>
         </div>
-      </div>
+
+      </div> // end of 'todo' div
+
     )
   }
 }

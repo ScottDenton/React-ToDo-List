@@ -1,12 +1,13 @@
 import React from 'react';
 
-
 export class Header extends React.Component{
   render(){
     return(
-      <div>
-        <h3>React To Do List</h3>
-      </div>
+      <nav>
+
+          <h2 className = 'main-heading'>My To Do List</h2>
+
+      </nav>
 
     )
   }

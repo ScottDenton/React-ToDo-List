@@ -1,0 +1,103 @@
+body{
+  background-image: url('./background.jpeg');
+}
+
+div {
+  outline-style: transparent;
+}
+
+div:active {
+  outline-style: transparent;
+}
+
+.App{
+  justify-content: center;
+  text-align: center;
+  font-family: fantasy;
+
+}
+
+.main-heading{
+  font-size: 40px;
+}
+
+.todo-input {
+  min-width: 400px;
+  min-height: 20px;
+  padding: 5px;
+  margin: 20px;
+  font-family:cursive;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.add-btn{
+  padding:10px 20px;
+  border: 2px groove rgba(90, 91, 99, 0.3);
+  border-radius: 15px;
+  background:white;
+  color: #666770;
+  font-family: cursive;
+  font-size: 16px;
+  box-shadow: 0 6px #999;
+}
+
+.add-btn:hover {
+
+}
+.add-btn:active {
+  background-color: #E8EAFF;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+ul {
+  list-style: none;
+  font-size: 18px;
+}
+
+.listItems {
+  text-transform: capitalize;
+  padding: 5px;
+}
+
+ul li button {
+  font-size: 18px;
+  margin-left: 20px;
+  border: 0;
+  color: rgba(147, 0, 0, 0.8);
+  padding: 5px 10px;
+  background:none;
+}
+
+.footer {
+  width: 100%;
+  margin: 0% -50%;
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  color: ;
+}
+.wrapper {
+   ;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-height: 100px;
+  text-align: center;
+}
+
+.todo-list{
+display: inline-block;
+}
+
+a, a:after  {
+  color: blue;
+}
+
+/* stops blue border when clicking on items */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
