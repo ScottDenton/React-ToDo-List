@@ -1,3 +1,6 @@
+This is a ToDo list I made to help me get some more practice with ReactJS and working with local storage.  I created it using  Create-react-app as the shell, which is why I have kept the instructions below.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
