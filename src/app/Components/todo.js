@@ -4,16 +4,30 @@ export class ToDo extends React.Component {
   constructor (props){
     super(props);
     this.state = {
-      items: [],
-      userInput: ''
+      items:[],
+      userInput: '',
+      storage: '',
     }
   }
 
-  onAdd(){
-    this.setState({
-      items: [this.state.items, this.state.userInput].flat(),
-      userInput: ''
-    })
+//reloads data from local storage on refresh. If no previous list, resets items to 0
+  componentWillMount(){
+    if(localStorage.length === 0){
+      this.setState({
+        items:[]
+      })} else {
+        this.setState({
+          items: JSON.parse(localStorage.getItem("list")),
+        })
+      }
+    }
+
+//when todo list is update(specifically when stuff is deleted), updates the local storage
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.items.length !== this.state.items){
+      const updatedList = JSON.stringify(this.state.items);
+      localStorage.setItem("list", updatedList)
+    }
   }
 
   onHandleChange(e){
@@ -22,13 +36,11 @@ export class ToDo extends React.Component {
     })
   }
 
-  // the item to be deleted is passed from the bind call on todo.js when its clicked
-  handleDelete(itemToBeDeleted){
-    let newItems = this.state.items.filter( (item) => {
-      return item !== itemToBeDeleted
-    });
+  onAdd(){
     this.setState({
-      items:newItems
+      items: [this.state.items, this.state.userInput].flat(),
+      userInput: '',
+      storage: localStorage.setItem("list", JSON.stringify([this.state.items, this.state.userInput].flat()))
     })
   }
 
@@ -36,6 +48,16 @@ export class ToDo extends React.Component {
     if(e.key === 'Enter') {
       this.onAdd()
     }
+  }
+
+  // the item to be deleted is passed from the bind call when its clicked
+  handleDelete(itemToBeDeleted){
+    let newItems = this.state.items.filter( (item) => {
+      return item !== itemToBeDeleted
+    });
+    this.setState({
+      items:newItems,
+    })
   }
 
   render(){
@@ -54,15 +76,14 @@ export class ToDo extends React.Component {
         <div className = 'wrapper'>
           <div className = 'todo-list'>
             <ul>
-            {this.state.items.map( (item, i) =>
+            {(this.state.items).map((item, i) =>
                <li key ={i} className = 'listItems'>
                {item}
-               < button onClick ={this.handleDelete.bind(this, item)}> x</button>
+               < button onClick ={(this.handleDelete.bind(this, item))}> x</button>
                </li> )}
             </ul>
           </div>
         </div>
-
       </div> // end of 'todo' div
 
     )
