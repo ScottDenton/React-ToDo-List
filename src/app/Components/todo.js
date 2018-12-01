@@ -32,7 +32,11 @@ export class ToDo extends React.Component {
     })
   }
 
-
+  handleKeyPress(e){
+    if(e.key === 'Enter') {
+      this.onAdd()
+    }
+  }
 
   render(){
     return(
@@ -42,12 +46,13 @@ export class ToDo extends React.Component {
         value = {this.state.userInput}
         type = 'text' placeholder = "What needs to be done"
         onChange = {this.onHandleChange.bind(this)}
+        onKeyPress = {this.handleKeyPress.bind(this)}
         />
         <button
         className = 'add-btn'
         onClick = {this.onAdd.bind(this)}> Add </button>
-        <div class = 'wrapper'>
-          <div class = 'todo-list'>
+        <div className = 'wrapper'>
+          <div className = 'todo-list'>
             <ul>
             {this.state.items.map( (item, i) =>
                <li key ={i} className = 'listItems'>
