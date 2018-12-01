@@ -1,5 +1,13 @@
 body{
-  background-image: url('./background.jpeg')
+  background-image: url('./background.jpeg');
+}
+
+div {
+  outline-style: transparent;
+}
+
+div:active {
+  outline-style: transparent;
 }
 
 .App{
@@ -27,10 +35,20 @@ body{
   padding:10px 20px;
   border: 2px groove rgba(90, 91, 99, 0.3);
   border-radius: 15px;
-  background:none;
-  color: #630000;
-  font-family: sans-serif;
-  font-size: 12px;
+  background:white;
+  color: #666770;
+  font-family: cursive;
+  font-size: 16px;
+  box-shadow: 0 6px #999;
+}
+
+.add-btn:hover {
+
+}
+.add-btn:active {
+  background-color: #E8EAFF;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
 }
 
 ul {
@@ -70,4 +88,16 @@ ul li button {
 
 .todo-list{
 display: inline-block;
+}
+
+a, a:after  {
+  color: blue;
+}
+
+/* stops blue border when clicking on items */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }
